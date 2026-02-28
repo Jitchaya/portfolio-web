@@ -1,8 +1,21 @@
 ---
+import SocialLinks from './SocialLinks.astro';
 ---
 
-<div class="flex flex-col justify-center grow mb-12 lg:mb-0 relative">
-  <div class="max-w-4xl">
+<div class="flex flex-col md:flex-row items-center gap-10 md:gap-16 grow mb-12 lg:mb-0 relative">
+  <!-- Avatar -->
+  <div class="shrink-0">
+    <div class="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden ring-4 ring-primary/30 bg-slate-100 dark:bg-slate-800">
+      <img
+        alt="Jitchaya Veerachodthada"
+        class="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-500"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuChNU7kCCBPoS6dzN2XuWuikxqatv8Sl_uj1Z2xmqjb75hYbuYjHIEdK2rBuu6l5jtQDe5CEjvgl6woXJiwwHEp06ty4U6RCNXZekmixEeVK_0CJV4lOe4R1hzQQBhEvqnxbzI3OnhW3uzL_m48oGmD8dtWEiZxjmkAX07qTxQDmXwI5VZ17gvByejD5j4ek_SWI3HajoElXSkvDS_ziG5De4D52D9pXzzbFZGuvFBOmf4A_3b5dquSM_5wll8Drxh-YEf17ohz6h0"
+      />
+    </div>
+  </div>
+
+  <!-- Text Content -->
+  <div class="max-w-4xl text-center md:text-left">
     <!-- Greeting -->
     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 leading-[1.2]">
       Hi, I'm <span class="text-primary">Jitchaya</span>
@@ -22,10 +35,15 @@
     </div>
 
     <!-- Bio -->
-    <p class="text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
+    <p class="text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mb-8">
       A modern, responsive, and creative portfolio. I specialize in turning complex ideas into clean,
       user-friendly interfaces. With a background in both design and code, I bridge the gap between
       aesthetics and functionality to deliver polished digital products.
     </p>
+
+    <!-- Social / Connect Icons -->
+    <div class="flex justify-center md:justify-start">
+      <SocialLinks />
+    </div>
   </div>
 </div>
