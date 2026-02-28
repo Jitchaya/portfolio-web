@@ -1,0 +1,88 @@
+---
+const navLinks = [
+  { label: 'Home', href: '/#home', section: 'home' },
+  { label: 'Project', href: '/#projects', section: 'projects' },
+  { label: 'About Me', href: '/#about', section: 'about' },
+  { label: 'Blog', href: '/#blog', section: 'blog' },
+  { label: 'Contact', href: '#' },
+];
+---
+
+<nav class="sticky top-0 z-50 flex items-center justify-between mb-16 lg:mb-32 py-4 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+  <div
+    class="bg-card-light dark:bg-card-dark border border-slate-200 dark:border-slate-800 px-6 py-3 rounded-full flex items-center gap-6 md:gap-8 shadow-sm"
+  >
+    {navLinks.map((link) => (
+      <a
+        class:list={[
+          'nav-link transition-colors',
+          link.hiddenOnMobile && 'hidden md:block',
+          'text-slate-500 hover:text-slate-900 dark:hover:text-white',
+        ]}
+        href={link.href}
+        data-section={link.section}
+      >
+        {link.label}
+      </a>
+    ))}
+  </div>
+  <div class="flex items-center gap-4">
+    <button
+      id="theme-toggle"
+      class="p-3 bg-slate-100 dark:bg-slate-800 rounded-full"
+    >
+      <span class="material-symbols-outlined block dark:hidden">light_mode</span>
+      <span class="material-symbols-outlined hidden dark:block text-primary">dark_mode</span>
+    </button>
+    <button
+      class="bg-primary/20 dark:bg-white text-slate-900 font-bold px-6 py-3 rounded-full hidden sm:flex items-center gap-2 hover:bg-primary dark:hover:bg-primary transition-all"
+    >
+      Let's Talk <span class="material-symbols-outlined text-[18px]">chat_bubble</span>
+    </button>
+  </div>
+</nav>
+
+<script>
+  // Theme toggle
+  const toggle = document.getElementById("theme-toggle");
+  toggle?.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark");
+    const isDark = document.documentElement.classList.contains("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
+
+  // Active nav link on scroll using Intersection Observer
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>(".nav-link[data-section]");
+  const sections = document.querySelectorAll<HTMLElement>("section[id]");
+
+  const ACTIVE_CLASSES = ["text-slate-900", "dark:text-white", "font-semibold"];
+  const INACTIVE_CLASSES = ["text-slate-500"];
+
+  function setActiveLink(sectionId: string) {
+    navLinks.forEach((link) => {
+      if (link.dataset.section === sectionId) {
+        link.classList.remove(...INACTIVE_CLASSES);
+        link.classList.add(...ACTIVE_CLASSES);
+      } else {
+        link.classList.remove(...ACTIVE_CLASSES);
+        link.classList.add(...INACTIVE_CLASSES);
+      }
+    });
+  }
+
+  // Default: highlight Home
+  setActiveLink("home");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveLink(entry.target.id);
+        }
+      });
+    },
+    { rootMargin: "-40% 0px -60% 0px" }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+</script>

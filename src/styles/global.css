@@ -1,19 +1,41 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
-/* @theme {
-  --color-primary-50: #faf4ff;
-  --color-primary-600: #931cf5;
-  --color-primary-700: #ab6ec7;
-  --color-primary-800: #7019b0;
-  --color-primary-900: #4a4063;
+@custom-variant dark (&:where(.dark, .dark *));
 
-  --color-light-50: #ffffff;
-  --color-light-100: #f4f6f8;
-  --color-light-150: #fdfdfd;
-  --color-light-200: #dce3f1;
-  --color-light-400: #7b8ec8;
-  --color-light-500: #858ead;
+@theme {
+  --color-primary: #D8B4FE;
+  --color-background-light: #F8FAFC;
+  --color-background-dark: #0A0A0A;
+  --color-card-dark: #161616;
+  --color-card-light: #FFFFFF;
 
-  --color-dark-800: #0f1117;
-  --color-dark-900: #000000;
-} */
+  --font-display: "Outfit", sans-serif;
+
+  --radius: 1rem;
+  --radius-2xl: 1.5rem;
+
+  --animate-rotate: rotate 10s linear infinite;
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Outfit", sans-serif;
+}
+
+.orb-glow {
+  filter: blur(80px);
+  opacity: 0.4;
+}
+
+.scroll-indicator {
+  animation: rotate 10s linear infinite;
+}

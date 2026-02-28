@@ -1,11 +1,89 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import BlogCard from '../components/BlogCard.astro';
+import AboutMe from '../components/AboutMe.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const projects = (await getCollection('projects')).sort(
+  (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
+);
+
+const blogs = (await getCollection('blogs')).sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
 ---
 
 <Layout>
-	<Welcome />
+  <!-- Two-Column Layout -->
+  <div
+    class="max-w-360 mx-auto flex flex-col lg:flex-row min-h-screen p-4 md:p-8 gap-8"
+  >
+    <Sidebar />
+    <main class="lg:ml-88 grow flex flex-col">
+      <Navbar />
+
+      <!-- Home Section -->
+      <section id="home">
+        <Hero />
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="py-16 lg:py-24">
+        <div class="mb-10">
+          <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-3">
+            My Projects
+          </h1>
+          <p class="text-slate-500 dark:text-slate-400 text-lg max-w-2xl">
+            A collection of my recent work spanning UI/UX design, branding, and digital illustration.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          {projects.map((project) => (
+            <ProjectCard
+              title={project.data.title}
+              description={project.data.description}
+              image={project.data.image}
+              tags={project.data.tags}
+              link={project.data.link}
+            />
+          ))}
+        </div>
+      </section>
+
+      <!-- About Me Section -->
+      <section id="about" class="py-16 lg:py-24">
+        <AboutMe />
+      </section>
+
+      <!-- Blog Section -->
+      <section id="blog" class="py-16 lg:py-24">
+        <div class="mb-10">
+          <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-3">
+            Blog
+          </h1>
+          <p class="text-slate-500 dark:text-slate-400 text-lg max-w-2xl">
+            Thoughts, tutorials, and insights on design, development, and the creative process.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          {blogs.map((blog) => (
+            <BlogCard
+              title={blog.data.title}
+              description={blog.data.description}
+              date={blog.data.date}
+              tags={blog.data.tags}
+              image={blog.data.image}
+              slug={blog.id}
+            />
+          ))}
+        </div>
+      </section>
+    </main>
+  </div>
 </Layout>
