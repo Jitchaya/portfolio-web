@@ -23,10 +23,6 @@ const formattedDate = new Date(blog.data.date).toLocaleDateString('en-US', {
 ---
 
 <Layout title={`${blog.data.title} | Jitchaya Veerachodthada`}>
-  <!-- Two-Column Layout -->
-  <div
-    class="max-w-360 mx-auto flex flex-col lg:flex-row min-h-screen p-4 md:p-8 gap-8"
-  >
     <Sidebar />
     <main class="lg:ml-88 grow flex flex-col">
       <Navbar />
@@ -88,6 +84,5 @@ const formattedDate = new Date(blog.data.date).toLocaleDateString('en-US', {
         <Content />
       </article>
     </main>
-  </div>
 </Layout>
 

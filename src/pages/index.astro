@@ -19,10 +19,6 @@ const blogs = (await getCollection('blogs')).sort(
 ---
 
 <Layout>
-  <!-- Two-Column Layout -->
-  <div
-    class="max-w-360 mx-auto flex flex-col lg:flex-row min-h-screen p-4 md:p-8 gap-8"
-  >
     <Sidebar />
     <main class="lg:ml-88 grow flex flex-col">
       <Navbar />
@@ -91,5 +87,4 @@ const blogs = (await getCollection('blogs')).sort(
         <ContactSection />
       </section>
     </main>
-  </div>
 </Layout>
