@@ -1,8 +1,8 @@
 ---
 const navLinks = [
   { label: 'Home', href: '/#home', section: 'home' },
-  { label: 'Project', href: '/#projects', section: 'projects' },
   { label: 'About Me', href: '/#about', section: 'about' },
+  { label: 'Project', href: '/#projects', section: 'projects' },
   { label: 'Blog', href: '/#blog', section: 'blog' },
   { label: 'Contact', href: '/#contact', section: 'contact' },
 ];
@@ -16,7 +16,6 @@ const navLinks = [
       <a
         class:list={[
           'nav-link transition-colors',
-          link.hiddenOnMobile && 'hidden md:block',
           'text-slate-500 hover:text-slate-900 dark:hover:text-white',
         ]}
         href={link.href}

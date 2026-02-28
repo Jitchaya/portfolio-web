@@ -4,6 +4,8 @@ description: "A complete visual identity including logo, typography, and brand g
 image: "https://placehold.co/600x400/1e293b/d8b4fe?text=Project+5"
 tags: ["Branding", "Illustration", "Design System"]
 link: "#"
+demoUrl: "#"
+sourceUrl: "#"
+dateRange: "Dec 2023 - Feb 2024"
 order: 5
 ---
-

@@ -9,6 +9,9 @@ const projects = defineCollection({
     image: z.string(),
     tags: z.array(z.string()),
     link: z.string().optional(),
+    demoUrl: z.string().optional(),
+    sourceUrl: z.string().optional(),
+    dateRange: z.string().optional(),
     order: z.number().optional(),
   }),
 });
@@ -18,7 +21,7 @@ const blogs = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    date: z.string(),
+    date: z.coerce.date(),
     tags: z.array(z.string()),
     image: z.string().optional(),
     order: z.number().optional(),
@@ -26,4 +29,3 @@ const blogs = defineCollection({
 });
 
 export const collections = { projects, blogs };
-

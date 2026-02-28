@@ -1,43 +1,34 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import Sidebar from '../components/Sidebar.astro';
-import Navbar from '../components/Navbar.astro';
+import PageShell from '../components/PageShell.astro';
 import BlogCard from '../components/BlogCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
 
 const blogs = (await getCollection('blogs')).sort(
-  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
 ---
 
 <Layout title="Blog | Jitchaya Veerachodthada">
-    <Sidebar />
-    <main class="lg:ml-88 grow flex flex-col">
-      <Navbar />
+  <PageShell>
+    <SectionHeading
+      title="Blog"
+      subtitle="Thoughts, tutorials, and insights on design, development, and the creative process."
+    />
 
-      <!-- Page Header -->
-      <div class="mb-10">
-        <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-3">
-          Blog
-        </h1>
-        <p class="text-slate-500 dark:text-slate-400 text-lg max-w-2xl">
-          Thoughts, tutorials, and insights on design, development, and the creative process.
-        </p>
-      </div>
-
-      <!-- Blog Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-        {blogs.map((blog) => (
-          <BlogCard
-            title={blog.data.title}
-            description={blog.data.description}
-            date={blog.data.date}
-            tags={blog.data.tags}
-            image={blog.data.image}
-            slug={blog.id}
-          />
-        ))}
-      </div>
-    </main>
+    <!-- Blog Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+      {blogs.map((blog) => (
+        <BlogCard
+          title={blog.data.title}
+          description={blog.data.description}
+          date={blog.data.date}
+          tags={blog.data.tags}
+          image={blog.data.image}
+          slug={blog.id}
+        />
+      ))}
+    </div>
+  </PageShell>
 </Layout>
-

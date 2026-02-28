@@ -1,4 +1,5 @@
 ---
+import SocialLinks from './SocialLinks.astro';
 ---
 
 <aside class="lg:w-[320px] lg:fixed lg:h-[calc(100vh-64px)] w-full shrink-0">
@@ -23,14 +24,14 @@
       class="relative w-full aspect-square rounded-2xl overflow-hidden mb-8 bg-slate-100 dark:bg-slate-800"
     >
       <img
-        alt="3D Avatar of Alex Walker"
+        alt="Jitchaya Veerachodthada"
         class="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-500"
         src="https://lh3.googleusercontent.com/aida-public/AB6AXuChNU7kCCBPoS6dzN2XuWuikxqatv8Sl_uj1Z2xmqjb75hYbuYjHIEdK2rBuu6l5jtQDe5CEjvgl6woXJiwwHEp06ty4U6RCNXZekmixEeVK_0CJV4lOe4R1hzQQBhEvqnxbzI3OnhW3uzL_m48oGmD8dtWEiZxjmkAX07qTxQDmXwI5VZ17gvByejD5j4ek_SWI3HajoElXSkvDS_ziG5De4D52D9pXzzbFZGuvFBOmf4A_3b5dquSM_5wll8Drxh-YEf17ohz6h0"
       />
     </div>
 
     <!-- Info -->
-    <div class="space-y-6 flex-grow">
+    <div class="space-y-6 grow">
       <div>
         <p class="text-xs text-slate-500 uppercase tracking-widest font-semibold mb-2">
           Specialization:
@@ -49,31 +50,8 @@
 
     <!-- Social Links & CTA -->
     <div class="mt-8">
-      <div class="flex gap-3 mb-6">
-        <a
-          class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
-          href="#"
-        >
-          <i class="material-symbols-outlined text-[18px]">share</i>
-        </a>
-        <a
-          class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
-          href="#"
-        >
-          <i class="material-symbols-outlined text-[18px]">alternate_email</i>
-        </a>
-        <a
-          class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
-          href="#"
-        >
-          <i class="material-symbols-outlined text-[18px]">link</i>
-        </a>
-        <a
-          class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
-          href="#"
-        >
-          <i class="material-symbols-outlined text-[18px]">public</i>
-        </a>
+      <div class="mb-6">
+        <SocialLinks />
       </div>
       <button
         class="w-full bg-primary hover:opacity-90 transition-opacity text-slate-900 font-bold py-4 rounded-xl flex items-center justify-center gap-2"
@@ -83,4 +61,3 @@
     </div>
   </div>
 </aside>
-

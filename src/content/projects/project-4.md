@@ -4,6 +4,7 @@ description: "A wellness companion app featuring workout tracking, meal planning
 image: "https://placehold.co/600x400/1e293b/d8b4fe?text=Project+4"
 tags: ["Mobile", "Health", "Illustration"]
 link: "#"
+demoUrl: "#"
+dateRange: "Mar 2024 - Jun 2024"
 order: 4
 ---
-

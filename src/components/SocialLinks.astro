@@ -1,0 +1,20 @@
+---
+const socialLinks = [
+  { icon: 'share', href: '#' },
+  { icon: 'alternate_email', href: '#' },
+  { icon: 'link', href: '#' },
+  { icon: 'public', href: '#' },
+];
+---
+
+<div class="flex gap-3">
+  {socialLinks.map((link) => (
+    <a
+      class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+      href={link.href}
+    >
+      <span class="material-symbols-outlined text-[18px]">{link.icon}</span>
+    </a>
+  ))}
+</div>
+

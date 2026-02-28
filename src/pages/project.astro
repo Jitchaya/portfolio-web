@@ -1,9 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import Sidebar from '../components/Sidebar.astro';
-import Navbar from '../components/Navbar.astro';
+import PageShell from '../components/PageShell.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
 
 const projects = (await getCollection('projects')).sort(
   (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
@@ -11,32 +11,26 @@ const projects = (await getCollection('projects')).sort(
 ---
 
 <Layout title="Projects | Jitchaya Veerachodthada">
-    <Sidebar />
-    <main class="lg:ml-88 grow flex flex-col">
-      <Navbar />
+  <PageShell>
+    <SectionHeading
+      title="My Projects"
+      subtitle="A collection of my recent work spanning UI/UX design, branding, and digital illustration."
+    />
 
-      <!-- Page Header -->
-      <div class="mb-10">
-        <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-3">
-          My Projects
-        </h1>
-        <p class="text-slate-500 dark:text-slate-400 text-lg max-w-2xl">
-          A collection of my recent work spanning UI/UX design, branding, and digital illustration.
-        </p>
-      </div>
-
-      <!-- Project Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-        {projects.map((project) => (
-          <ProjectCard
-            title={project.data.title}
-            description={project.data.description}
-            image={project.data.image}
-            tags={project.data.tags}
-            link={project.data.link}
-          />
-        ))}
-      </div>
-    </main>
+    <!-- Project Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+      {projects.map((project) => (
+        <ProjectCard
+          title={project.data.title}
+          description={project.data.description}
+          image={project.data.image}
+          tags={project.data.tags}
+          link={project.data.link}
+          demoUrl={project.data.demoUrl}
+          sourceUrl={project.data.sourceUrl}
+          dateRange={project.data.dateRange}
+        />
+      ))}
+    </div>
+  </PageShell>
 </Layout>
-

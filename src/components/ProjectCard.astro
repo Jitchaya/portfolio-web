@@ -1,18 +1,22 @@
 ---
+import TagBadge from './TagBadge.astro';
+
 interface Props {
   title: string;
   description: string;
   image: string;
   tags: string[];
   link?: string;
+  demoUrl?: string;
+  sourceUrl?: string;
+  dateRange?: string;
 }
 
-const { title, description, image, tags, link = '#' } = Astro.props;
+const { title, description, image, tags, link = '#', demoUrl, sourceUrl, dateRange } = Astro.props;
 ---
 
-<a
-  href={link}
-  class="group block bg-card-light dark:bg-card-dark border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+<div
+  class="group bg-card-light dark:bg-card-dark border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
 >
   <!-- Thumbnail -->
   <div class="relative overflow-hidden aspect-[3/2]">
@@ -25,29 +29,60 @@ const { title, description, image, tags, link = '#' } = Astro.props;
 
   <!-- Content -->
   <div class="p-5">
+    <!-- Title -->
+    <h3 class="font-bold text-lg mb-1">
+      {title}
+    </h3>
+
+    <!-- Date Range -->
+    {dateRange && (
+      <div class="flex items-center gap-2 mb-3">
+        <span class="material-symbols-outlined text-[16px] text-slate-400">calendar_today</span>
+        <span class="text-xs font-medium text-slate-500 dark:text-slate-400">{dateRange}</span>
+      </div>
+    )}
+
+    <!-- Description -->
+    <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+      {description}
+    </p>
+
     <!-- Tags -->
-    <div class="flex flex-wrap gap-2 mb-3">
+    <div class="flex flex-wrap gap-2 mb-4">
       {tags.map((tag) => (
-        <span class="text-xs font-medium px-3 py-1 rounded-full bg-primary/20 text-slate-700 dark:text-slate-300">
-          {tag}
-        </span>
+        <TagBadge tag={tag} />
       ))}
     </div>
 
-    <!-- Title & Description -->
-    <div class="flex items-start justify-between gap-3">
-      <div>
-        <h3 class="font-bold text-lg mb-1 group-hover:text-primary transition-colors">
-          {title}
-        </h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-          {description}
-        </p>
-      </div>
-      <span class="material-symbols-outlined text-slate-400 group-hover:text-primary group-hover:translate-x-1 transition-all mt-1 shrink-0">
-        arrow_forward
-      </span>
+    <!-- Action Buttons -->
+    <div class="flex items-center gap-3">
+      {demoUrl && (
+        <a
+          href={demoUrl}
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/20 text-slate-700 dark:text-slate-200 text-sm font-medium hover:bg-primary hover:text-slate-900 transition-all"
+        >
+          <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+          Demo
+        </a>
+      )}
+      {sourceUrl && (
+        <a
+          href={sourceUrl}
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"
+        >
+          <span class="material-symbols-outlined text-[16px]">code</span>
+          Source
+        </a>
+      )}
+      {!demoUrl && !sourceUrl && link && (
+        <a
+          href={link}
+          class="inline-flex items-center gap-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary transition-colors"
+        >
+          View Project
+          <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+        </a>
+      )}
     </div>
   </div>
-</a>
-
+</div>
