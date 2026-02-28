@@ -7,6 +7,7 @@ import Hero from '../components/Hero.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import BlogCard from '../components/BlogCard.astro';
 import AboutMe from '../components/AboutMe.astro';
+import ContactSection from '../components/ContactSection.astro';
 
 const projects = (await getCollection('projects')).sort(
   (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
@@ -83,6 +84,11 @@ const blogs = (await getCollection('blogs')).sort(
             />
           ))}
         </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="py-16 lg:py-24">
+        <ContactSection />
       </section>
     </main>
   </div>
