@@ -67,6 +67,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Offset anchor scroll for the sticky navbar */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
 body {
   font-family: "Outfit", sans-serif;
 }
