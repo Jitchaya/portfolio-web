@@ -75,19 +75,30 @@ const navLinks = [
     });
   }
 
-  // Default: highlight Home
-  setActiveLink("home");
+  // Detect current page and highlight the correct nav link
+  const currentPath = window.location.pathname;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveLink(entry.target.id);
-        }
-      });
-    },
-    { rootMargin: "-40% 0px -60% 0px" }
-  );
+  if (currentPath.startsWith("/blog")) {
+    // On /blog or /blog/[slug] pages, highlight "Blog"
+    setActiveLink("blog");
+  } else if (currentPath.startsWith("/project")) {
+    // On /project pages, highlight "Project"
+    setActiveLink("projects");
+  } else {
+    // On homepage, default to "Home" and use IntersectionObserver
+    setActiveLink("home");
 
-  sections.forEach((section) => observer.observe(section));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveLink(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-40% 0px -60% 0px" }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  }
 </script>
