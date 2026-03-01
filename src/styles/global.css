@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@plugin "daisyui";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -21,6 +22,45 @@
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
+}
+
+/* DaisyUI theme overrides — match project's purple color scheme */
+html:root, :root[data-theme="light"] {
+  --color-primary: #D8B4FE !important;
+  --color-primary-content: #1e1b4b !important;
+  --color-secondary: #a78bfa !important;
+  --color-secondary-content: #faf5ff !important;
+  --color-accent: #e879f9 !important;
+  --color-accent-content: #3b0764 !important;
+  --color-neutral: #1e293b !important;
+  --color-neutral-content: #e2e8f0 !important;
+  --color-base-100: #F8FAFC !important;
+  --color-base-200: #F1F5F9 !important;
+  --color-base-300: #E2E8F0 !important;
+  --color-base-content: #0f172a !important;
+  --color-info: #38bdf8 !important;
+  --color-success: #4ade80 !important;
+  --color-warning: #fbbf24 !important;
+  --color-error: #f87171 !important;
+}
+
+.dark, [data-theme="dark"] {
+  --color-primary: #D8B4FE !important;
+  --color-primary-content: #1e1b4b !important;
+  --color-secondary: #a78bfa !important;
+  --color-secondary-content: #faf5ff !important;
+  --color-accent: #e879f9 !important;
+  --color-accent-content: #faf5ff !important;
+  --color-neutral: #1e293b !important;
+  --color-neutral-content: #e2e8f0 !important;
+  --color-base-100: #0A0A0A !important;
+  --color-base-200: #161616 !important;
+  --color-base-300: #1e1e1e !important;
+  --color-base-content: #f1f5f9 !important;
+  --color-info: #38bdf8 !important;
+  --color-success: #4ade80 !important;
+  --color-warning: #fbbf24 !important;
+  --color-error: #f87171 !important;
 }
 
 html {

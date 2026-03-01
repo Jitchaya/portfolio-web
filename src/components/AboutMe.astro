@@ -7,8 +7,30 @@ const skills = [
 ];
 
 const experience = [
-  { year: '2025 — Present', role: 'Software Engineer (Co-op)', company: 'SCB (Siam Commercial Bank)' },
-  { year: '2024 — 2025', role: 'ERP Developer (Intern)', company: 'Internship' },
+  {
+    year: 'May 2024 — Present',
+    role: 'Software Engineer (Full-time)',
+    company: 'SCB (Siam Commercial Bank)',
+    description: 'Developing and maintaining enterprise-level banking applications and microservices.',
+    icon: 'rocket_launch',
+    current: true,
+  },
+  {
+    year: 'Nov 2023 — Apr 2024',
+    role: 'Software Engineer (Co-op)',
+    company: 'SCB (Siam Commercial Bank)',
+    description: 'Contributed to full-stack development projects during co-operative education program.',
+    icon: 'engineering',
+    current: false,
+  },
+  {
+    year: 'Apr 2023 — Jul 2023',
+    role: 'ERP Developer (Intern)',
+    company: 'Alphametrics',
+    description: 'Built and customized ERP modules to streamline business operations.',
+    icon: 'work',
+    current: false,
+  },
 ];
 ---
 
@@ -53,19 +75,60 @@ const experience = [
 
   <!-- Experience -->
   <div>
-    <h3 class="text-2xl font-bold tracking-tight mb-6">Experience</h3>
-    <div class="space-y-4">
-      {experience.map((item) => (
-        <div class="bg-card-light dark:bg-card-dark border border-slate-200 dark:border-slate-800 rounded-2xl p-5 md:p-6 shadow-sm flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
-          <span class="text-sm font-medium text-primary shrink-0 min-w-35">
-            {item.year}
-          </span>
-          <div>
-            <h4 class="font-bold">{item.role}</h4>
-            <p class="text-sm text-slate-500 dark:text-slate-400">{item.company}</p>
+    <h3 class="text-2xl font-bold tracking-tight mb-6 md:text-center">Experience</h3>
+    <ul class="timeline timeline-vertical max-md:timeline-compact">
+      {experience.map((item, index) => {
+        const isLeft = index % 2 === 0;
+        const cardContent = (
+          <div class="bg-card-light dark:bg-card-dark border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group">
+            <div class="flex flex-wrap items-center gap-2 mb-2">
+              <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-primary">
+                <span class="material-symbols-outlined text-[14px]">calendar_today</span>
+                {item.year}
+              </span>
+              {item.current && (
+                <span class="badge badge-primary badge-sm badge-soft gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                  Current
+                </span>
+              )}
+            </div>
+            <h4 class="font-bold text-base md:text-lg mb-1 group-hover:text-primary transition-colors">{item.role}</h4>
+            <p class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-2">
+              <span class="material-symbols-outlined text-[14px] align-text-bottom mr-1">apartment</span>
+              {item.company}
+            </p>
+            <p class="text-sm text-slate-400 dark:text-slate-500 leading-relaxed">{item.description}</p>
           </div>
-        </div>
-      ))}
-    </div>
+        );
+        return (
+          <li>
+            {index > 0 && <hr class="bg-primary/40" />}
+            <div class:list={['timeline-start mb-6', isLeft ? '' : 'md:text-end']}>
+              {isLeft ? cardContent : <Fragment />}
+            </div>
+            <div class="timeline-middle">
+              <div class:list={[
+                'w-10 h-10 rounded-full flex items-center justify-center shadow-md',
+                item.current
+                  ? 'bg-primary ring-4 ring-primary/25 animate-pulse'
+                  : 'bg-card-light dark:bg-card-dark border-2 border-primary/50'
+              ]}>
+                <span class:list={[
+                  'material-symbols-outlined text-[20px]',
+                  item.current ? 'text-primary-content' : 'text-primary'
+                ]}>
+                  {item.icon}
+                </span>
+              </div>
+            </div>
+            <div class="timeline-end mb-6">
+              {isLeft ? <Fragment /> : cardContent}
+            </div>
+            {index < experience.length - 1 && <hr class="bg-primary/40" />}
+          </li>
+        );
+      })}
+    </ul>
   </div>
 </div>
